@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import CardGrid from '../components/CardGrid.astro';
+
+const path = Astro.url.pathname;
+
+const experience = [
+  {
+    company: 'Ethermed',
+    role: 'Senior Software Engineer',
+    dates: '2026 – Present',
+    location: 'Minneapolis, MN',
+    points: [
+      'Building prior authorization and payer-provider automation systems on an Elixir/Phoenix platform.',
+      'Submissions and integration team — connecting healthcare providers with insurance payers at scale.',
+      'AI-assisted clinical workflow tooling targeting 70% org-wide AI adoption.',
+    ],
+  },
+  {
+    company: 'Blockit → Alluvium Health',
+    role: 'Senior Software Engineer',
+    dates: 'Sep 2023 – Mar 2026',
+    location: 'Remote',
+    points: [
+      'Healthcare scheduling, referral management, and network integrity platform serving major health systems including Memorial Hermann and CommonSpirit.',
+      'Engineered advanced LiveView UI for real-time calendar booking and template rendering, migrating core booking flows from React to Phoenix LiveView.',
+      'Resolved a longstanding 3-year "Next Availability" sorting bug impacting major client revenue; authored comprehensive TDD enabling self-healing appointment logic.',
+      'Built internal dashboards and admin tooling with Phoenix LiveDashboard, New Relic, and custom LiveView debugging tools, reducing support response times.',
+      'Proposed and designed an AI knowledge-base system to executive leadership.',
+    ],
+  },
+  {
+    company: 'TaxJar (acquired by Stripe, 2021)',
+    role: 'Software Engineer',
+    dates: 'Jul 2019 – Aug 2023',
+    location: 'Remote',
+    points: [
+      'Developed and maintained an Elixir microservice processing ~2 million daily database entries from eCommerce integrations (Shopify, Amazon, eBay) using Oban job queues and ETL pipelines.',
+      'Integrated a custom tax-calculation service into Squarespace\'s checkout experience.',
+      'Migrated critical API endpoints from legacy Ruby monolith to Elixir microservice, decreasing response times by 45% (110ms → 60ms).',
+      'Implemented database optimizations — partitioning, indexing, read replicas — for high-volume receipts data at scale.',
+      'Post-acquisition: continued integrations and tax automation work within Stripe-scale infrastructure and compliance standards.',
+    ],
+  },
+  {
+    company: 'Revelry Labs',
+    role: 'Software Engineer',
+    dates: 'Aug 2017 – Jul 2019',
+    location: 'New Orleans, LA (Remote)',
+    points: [
+      'Early adopter of Phoenix LiveView — built real-time logistics dashboards serving as mission-critical command centers for oil-industry transportation, coordinating sand delivery operations across Texas.',
+      'Developed React Native applications interfacing with Elixir/Phoenix backends for logistics and operational tooling.',
+      'First professional software role; Elixir and Phoenix from day one. Foundation of 8+ years of BEAM ecosystem work.',
+    ],
+  },
+];
+
+const education = [
+  {
+    school: 'Dev Bootcamp',
+    degree: 'Full-Stack Web Development',
+    year: '2016',
+    location: 'Seattle, WA',
+  },
+  {
+    school: 'Augsburg University',
+    degree: 'B.A. Film Production',
+    year: '2012',
+    location: 'Minneapolis, MN',
+  },
+];
+
+const skills = {
+  'Expert (8+ years)': ['Elixir', 'Phoenix', 'LiveView', 'PostgreSQL', 'Git/GitHub', 'CI/CD', 'JavaScript', 'REST APIs', 'SQL'],
+  'Proficient (3+ years)': ['AWS', 'GCP', 'Docker', 'Kubernetes', 'Redis', 'Oban', 'React', 'Tailwind CSS', 'OTP/BEAM'],
+  'Infrastructure': ['Fly.io', 'Systemd', 'GitHub Actions', 'Nginx', 'Terraform'],
+  'Observability': ['New Relic', 'Grafana', 'DataDog', 'SumoLogic', 'Phoenix LiveDashboard', 'Elixir Telemetry'],
+  'AI & Agents': ['Multi-agent orchestration', 'MCP (Model Context Protocol)', 'LLM integration', 'Prompt engineering'],
+  'Practices': ['Integration architecture', 'Data normalization', 'Distributed systems', 'TDD', 'Mentorship'],
+};
+---
+
+<Layout
+  title="Resume"
+  description="Resume and work history for Jake Johnson — senior Elixir engineer, healthcare tech, AI agent systems."
+>
+  <Nav currentPath={path} />
+
+  <main class="pt-14">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+
+      <!-- Header -->
+      <div class="mb-16">
+        <span class="font-mono text-xs text-accent-light tracking-widest uppercase">Resume</span>
+        <h1 class="font-display font-bold text-4xl text-ink mt-2 mb-4">Jake D. Johnson</h1>
+        <p class="text-muted text-lg max-w-2xl leading-relaxed">
+          Senior software engineer with 8+ years on the BEAM. Healthcare technology, integration architecture, and AI agent systems.
+          Film school graduate turned distributed systems builder.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-5">
+          <span class="text-xs font-mono text-muted">Minneapolis, MN</span>
+        </div>
+      </div>
+
+      <!-- ── Experience ── -->
+      <section class="mb-20">
+        <div class="flex items-center gap-4 mb-10">
+          <h2 class="font-display font-semibold text-xl text-ink">Experience</h2>
+          <div class="h-px flex-1 bg-border/60"></div>
+        </div>
+
+        <div class="space-y-0">
+          {experience.map((job, i) => (
+            <div class:list={[
+              'relative pl-8 pb-10',
+              i < experience.length - 1 ? 'border-l border-border/50' : 'border-l border-transparent',
+            ]}>
+              {/* Timeline dot */}
+              <div class="absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full bg-accent border-2 border-bg" />
+
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+                <div>
+                  <h3 class="font-display font-semibold text-ink text-base">{job.company}</h3>
+                  <span class="text-sm text-accent-light font-medium">{job.role}</span>
+                </div>
+                <div class="flex flex-col sm:items-end gap-0.5">
+                  <span class="text-xs font-mono text-muted-2">{job.dates}</span>
+                  <span class="text-xs text-muted-2">{job.location}</span>
+                </div>
+              </div>
+
+              <ul class="space-y-1.5">
+                {job.points.map((point) => (
+                  <li class="text-sm text-muted leading-relaxed flex gap-2">
+                    <span class="text-accent/60 shrink-0">›</span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- ── Education ── -->
+      <section class="mb-20">
+        <div class="flex items-center gap-4 mb-10">
+          <h2 class="font-display font-semibold text-xl text-ink">Education</h2>
+          <div class="h-px flex-1 bg-border/60"></div>
+        </div>
+
+        <CardGrid cols={2}>
+          {education.map((ed) => (
+            <div class="p-5 rounded-xl bg-surface border border-border">
+              <h3 class="font-display font-semibold text-ink text-sm mb-1">{ed.school}</h3>
+              <p class="text-sm text-accent-light">{ed.degree}</p>
+              <div class="flex items-center gap-2 mt-2">
+                {ed.year && <span class="text-xs font-mono text-muted-2">{ed.year}</span>}
+                {ed.year && <span class="text-muted-2">·</span>}
+                <span class="text-xs text-muted-2">{ed.location}</span>
+              </div>
+            </div>
+          ))}
+        </CardGrid>
+      </section>
+      <section class="mb-20">
+        <div class="flex items-center gap-4 mb-10">
+          <h2 class="font-display font-semibold text-xl text-ink">Skills & Technologies</h2>
+          <div class="h-px flex-1 bg-border/60"></div>
+        </div>
+
+        <CardGrid cols={3}>
+          {Object.entries(skills).map(([category, items]) => (
+            <div>
+              <h3 class="font-mono text-xs text-accent-light tracking-widest uppercase mb-3">{category}</h3>
+              <div class="flex flex-wrap gap-1.5">
+                {items.map((skill) => (
+                  <span class="text-xs font-mono text-muted bg-surface-2 border border-border px-2 py-0.5 rounded">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </CardGrid>
+      </section>
+
+      <!-- ── The Arc ── -->
+      <section class="mb-8">
+        <div class="rounded-xl bg-surface border border-border/60 p-8">
+          <h3 class="font-display font-semibold text-ink text-base mb-3">The throughline</h3>
+          <div class="space-y-3 text-sm text-muted leading-relaxed">
+            <p>
+              Studied film — learned to tell stories with structure and constraint. Went to a coding bootcamp in Seattle
+              and discovered that software was the same discipline with different materials. Found Elixir at my first job and
+              never left the BEAM.
+            </p>
+            <p>
+              The career arc bends through e-commerce data normalization (TaxJar/Stripe), healthcare scheduling and referral
+              networks (Blockit/Alluvium), and now prior authorization automation (Ethermed). The constant: integration
+              architecture. Abstracting adapter layers away from core platforms so teams can reason about clean, normalized data
+              instead of fighting vendor APIs.
+            </p>
+            <p>
+              The other constant: internal tooling. I love breaking down knowledge silos — building the systems that make
+              an entire organization smarter and faster. Central knowledge repositories, agent-assisted workflows, tools that
+              connect the people who have the answers with the people who need them. That's the work I keep gravitating toward
+              no matter where I am.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-border/40">
+      <div class="max-w-5xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="font-mono text-xs text-muted-2">
+          minneapolis, mn
+        </span>
+        <div class="flex items-center gap-5">
+          <a
+            href="https://github.com/jakedjohnson"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted-2 hover:text-ink transition-colors duration-200 text-xs font-mono"
+          >
+            github
+          </a>
+          <a
+            href="https://www.linkedin.com/in/jacobdjohnson/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted-2 hover:text-ink transition-colors duration-200 text-xs font-mono"
+          >
+            linkedin
+          </a>
+        </div>
+      </div>
+    </footer>
+  </main>
+</Layout>

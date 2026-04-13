@@ -1,0 +1,158 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CardGrid from '../components/CardGrid.astro';
+
+const path = Astro.url.pathname;
+
+// ── Software Projects ────────────────────────────────────────────────────────
+const softwareProjects = [
+  {
+    name: 'Turning Sky Labs',
+    description: 'A real-world digital twin of the sky. Ephemeris computation, astronomical modeling, and a shareable database protocol with MCP access — all in Elixir on the BEAM. Much more than an ephemeris engine; the long-term vision is a platform for correlating celestial mechanics with lived experience.',
+    tags: ['Elixir', 'Phoenix', 'Astronomy', 'Digital Twin', 'MCP'],
+    href: 'https://turningskylabs.com',
+    status: 'active' as const,
+  },
+  {
+    name: 'ExEphemeris',
+    description: 'Interactive 3D celestial sphere visualization. Real-time planetary positions streamed via Phoenix Channels, rendered with React Three Fiber. A working demo of the Turning Sky ephemeris stack.',
+    tags: ['Phoenix', 'React Three Fiber', 'WebGL', 'Channels'],
+    href: 'https://ex-ephemeris.fly.dev/',
+    status: 'shipped' as const,
+  },
+  {
+    name: 'The Substrate',
+    description: 'Platform-agnostic protocol framework for AI agent systems. Defines how agents declare capabilities, negotiate handoffs, and maintain shared state. Actively used across personal projects and multiple workplace implementations.',
+    tags: ['Protocols', 'AI Systems', 'Elixir', 'Open Source'],
+    github: 'https://github.com/foxtrotjellyfish/the-substrate',
+    status: 'active' as const,
+  },
+  {
+    name: 'The Cortex',
+    description: 'OTP-based agent orchestration engine. GenServers as agents, supervision trees as coordination, Oban as the job backbone.',
+    tags: ['Elixir', 'OTP', 'GenServer', 'Oban'],
+    github: 'https://github.com/foxtrotjellyfish/the-cortex',
+    status: 'building' as const,
+  },
+  {
+    name: 'Gooey Tower',
+    description: 'Self-hosted BEAM infrastructure on a home-lab server. Runs a constellation of OTP services — ephemeris engines, voice capture, agent coordination — all managed with systemd and Mix releases.',
+    tags: ['Elixir', 'OTP', 'Linux', 'Systemd', 'Self-Hosted'],
+    status: 'active' as const,
+  },
+  {
+    name: 'ExVox',
+    description: 'Elixir experiment in voice capture and speech-to-text. A prototype for locally-hosted transcription, cleanup passes, and routing voice memos into structured data. Precursor to tools like TypeWhisper.',
+    tags: ['Elixir', 'Phoenix', 'STT', 'Audio', 'Local LLM'],
+    github: 'https://github.com/jakedjohnson/ex_vox',
+    status: 'wip' as const,
+  },
+];
+
+// ── Physical Projects ────────────────────────────────────────────────────────
+const physicalProjects = [
+  {
+    name: 'Emergency Structural Shoring (2022)',
+    description: 'A structural engineer identified the southeast corner of a 1915 pier-and-beam house in Taylor, TX as "imminent collapse" — estimated the structure had been modified five or six times over its 100+ years. No contractor would take the job. Figured out how to shore up the entire structure so the critical corner column could be replaced.',
+    tags: ['Structural', 'Pier & Beam', 'Shoring', 'DIY'],
+    status: 'shipped' as const,
+  },
+  {
+    name: 'House Foundation Leveling (2025)',
+    description: 'Full pier-and-beam leveling of the same 1915 Taylor, TX house. After a century of modifications, conventional leveling wasn\'t an option — it needed a personal touch. Jacks, beams, laser leveling, joist sistering, and weeks in the crawlspace. Also where QuantumCursor — my first experiment in persistent AI memory — was born.',
+    tags: ['Structural', 'Pier & Beam', 'Foundations', 'DIY'],
+    status: 'shipped' as const,
+  },
+  {
+    name: 'DIY Lithium Van Power System (2017)',
+    description: 'Built a 24V Li-ion battery bank from ~460 recycled laptop 18650 cells for a Dodge ProMaster camper conversion in Seattle. ElectroDacus BMS, AIMS pure sine inverter, solar charging. Lived in it for a year and a half. The pack was still running six years later.',
+    tags: ['Electrical', 'Battery Systems', 'Solar', 'Van Life'],
+    status: 'shipped' as const,
+  },
+];
+---
+
+<Layout
+  title="Projects"
+  description="Software projects and physical builds by Jake D. Johnson — Elixir ephemeris engines, AI agent systems, van conversions, and DIY engineering."
+>
+  <Nav currentPath={path} />
+
+  <main class="pt-14">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+
+      <!-- Page header -->
+      <div class="mb-16">
+        <span class="font-mono text-xs text-accent-light tracking-widest uppercase">Projects</span>
+        <h1 class="font-display font-bold text-4xl text-ink mt-2 mb-4">
+          Things I've built
+        </h1>
+        <p class="text-muted text-lg max-w-2xl leading-relaxed">
+          Software and physical. Some are production systems, some are proofs of concept, some are things you build because nobody else will.
+          The common thread: if a system has rules, it can be modeled.
+        </p>
+      </div>
+
+      <!-- ── Software ── -->
+      <section class="mb-20">
+        <div class="flex items-center gap-4 mb-8">
+          <h2 class="font-display font-semibold text-xl text-ink">Software / Agentic Infrastructure</h2>
+          <div class="h-px flex-1 bg-border/60"></div>
+        </div>
+        <CardGrid cols={3}>
+          {softwareProjects.map((p) => <ProjectCard {...p} />)}
+        </CardGrid>
+      </section>
+
+      <!-- ── Physical ── -->
+      <section class="mb-20">
+        <div class="flex items-center gap-4 mb-8">
+          <h2 class="font-display font-semibold text-xl text-ink">Physical Builds</h2>
+          <div class="h-px flex-1 bg-border/60"></div>
+        </div>
+        <CardGrid cols={2}>
+          {physicalProjects.map((p) => <ProjectCard {...p} />)}
+        </CardGrid>
+      </section>
+
+      <!-- ── More ── -->
+      <div class="rounded-xl bg-surface border border-border/60 border-dashed p-8 text-center">
+        <p class="text-muted text-sm font-mono mb-1">// and more</p>
+        <p class="text-muted-2 text-xs">
+          Forks, experiments, and one-off tools live on <a href="https://github.com/jakedjohnson" target="_blank" rel="noopener noreferrer" class="text-accent-light hover:text-accent-bright transition-colors">GitHub</a>.
+          Each project above will get a dedicated page with the full story.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-border/40">
+      <div class="max-w-5xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="font-mono text-xs text-muted-2">
+          minneapolis, mn
+        </span>
+        <div class="flex items-center gap-5">
+          <a
+            href="https://github.com/jakedjohnson"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted-2 hover:text-ink transition-colors duration-200 text-xs font-mono"
+          >
+            github
+          </a>
+          <a
+            href="https://www.linkedin.com/in/jacobdjohnson/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted-2 hover:text-ink transition-colors duration-200 text-xs font-mono"
+          >
+            linkedin
+          </a>
+        </div>
+      </div>
+    </footer>
+  </main>
+</Layout>

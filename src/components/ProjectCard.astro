@@ -1,17 +1,19 @@
 ---
 interface Props {
   name: string;
+  year?: string;
   description?: string;
   tags: string[];
   href?: string;
   github?: string;
-  status?: 'active' | 'shipped' | 'building' | 'wip';
+  status?: 'active' | 'shipped' | 'building' | 'wip' | 'noodling';
   highlight?: boolean;
   private?: boolean;
 }
 
 const {
   name,
+  year,
   description,
   tags,
   href,
@@ -26,6 +28,7 @@ const statusConfig = {
   shipped: { label: 'Shipped', color: 'text-blue-400 bg-blue-400/10 border-blue-400/20' },
   building: { label: 'Building', color: 'text-amber-400 bg-amber-400/10 border-amber-400/20' },
   wip: { label: 'WIP', color: 'text-muted bg-surface-2 border-border' },
+  noodling: { label: 'Noodling', color: 'text-violet-400 bg-violet-400/10 border-violet-400/20' },
 };
 ---
 
@@ -62,6 +65,10 @@ const statusConfig = {
       {statusConfig[status].label}
     </span>
   </div>
+
+  {year && (
+    <p class="font-mono text-xs text-muted-2 -mt-1 mb-3">{year}</p>
+  )}
 
   {description && (
     <p class="text-muted text-sm leading-relaxed flex-1 mb-4">

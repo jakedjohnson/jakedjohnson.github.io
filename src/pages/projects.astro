@@ -55,19 +55,29 @@ const softwareProjects = [
 // ── Physical Projects ────────────────────────────────────────────────────────
 const physicalProjects = [
   {
-    name: 'Emergency Structural Shoring (2022)',
-    description: 'A structural engineer identified the southeast corner of a 1915 pier-and-beam house in Taylor, TX as "imminent collapse" — estimated the structure had been modified five or six times over its 100+ years. No contractor would take the job. Figured out how to shore up the entire structure so the critical corner column could be replaced.',
-    tags: ['Structural', 'Pier & Beam', 'Shoring', 'DIY'],
-    status: 'shipped' as const,
+    name: 'NetBSD Agent Platform (Raspberry Pi 5)',
+    year: '2026',
+    description: 'Elixir/OTP and a local LLM running on a Raspberry Pi 5 under NetBSD. Air-gapped agent orchestration supervised by OTP, inference via llama.cpp — no cloud, no network, no safety net. Submitted as a talk to ElixirConf US 2026.',
+    tags: ['NetBSD', 'Raspberry Pi', 'Elixir', 'OTP', 'Local LLM'],
+    status: 'noodling' as const,
   },
   {
-    name: 'House Foundation Leveling (2025)',
+    name: 'House Foundation Leveling',
+    year: '2025',
     description: 'Full pier-and-beam leveling of the same 1915 Taylor, TX house. After a century of modifications, conventional leveling wasn\'t an option — it needed a personal touch. Jacks, beams, laser leveling, joist sistering, and weeks in the crawlspace. Also where QuantumCursor — my first experiment in persistent AI memory — was born.',
     tags: ['Structural', 'Pier & Beam', 'Foundations', 'DIY'],
     status: 'shipped' as const,
   },
   {
-    name: 'DIY Lithium Van Power System (2017)',
+    name: 'Emergency Structural Shoring',
+    year: '2022',
+    description: 'A structural engineer identified the southeast corner of a 1915 pier-and-beam house in Taylor, TX as "imminent collapse" — estimated the structure had been modified five or six times over its 100+ years. No contractor would take the job. Figured out how to shore up the entire structure so the critical corner column could be replaced.',
+    tags: ['Structural', 'Pier & Beam', 'Shoring', 'DIY'],
+    status: 'shipped' as const,
+  },
+  {
+    name: 'DIY Lithium Van Power System',
+    year: '2017',
     description: 'Built a 24V Li-ion battery bank from ~460 recycled laptop 18650 cells for a Dodge ProMaster camper conversion in Seattle. ElectroDacus BMS, AIMS pure sine inverter, solar charging. Lived in it for a year and a half. The pack was still running six years later.',
     tags: ['Electrical', 'Battery Systems', 'Solar', 'Van Life'],
     status: 'shipped' as const,
@@ -99,7 +109,7 @@ const physicalProjects = [
       <!-- ── Software ── -->
       <section class="mb-20">
         <div class="flex items-center gap-4 mb-8">
-          <h2 class="font-display font-semibold text-xl text-ink">Software / Agentic Infrastructure</h2>
+          <h2 class="font-display font-semibold text-xl text-ink">Software & Agentic Infrastructure</h2>
           <div class="h-px flex-1 bg-border/60"></div>
         </div>
         <CardGrid cols={3}>
@@ -110,7 +120,7 @@ const physicalProjects = [
       <!-- ── Physical ── -->
       <section class="mb-20">
         <div class="flex items-center gap-4 mb-8">
-          <h2 class="font-display font-semibold text-xl text-ink">Physical Builds</h2>
+          <h2 class="font-display font-semibold text-xl text-ink">Physical & Embedded Systems</h2>
           <div class="h-px flex-1 bg-border/60"></div>
         </div>
         <CardGrid cols={2}>

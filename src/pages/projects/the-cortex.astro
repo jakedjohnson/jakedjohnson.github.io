@@ -1,0 +1,281 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+
+const path = Astro.url.pathname;
+---
+
+<Layout
+  title="The Cortex"
+  description="Multi-agent orchestration engine built on Elixir/OTP. Viewpoint-diverse agents debate via natural language, supervised by fault-tolerant supervision trees. Early benchmarks show collectively cheap models solving reasoning problems no individual model can."
+>
+  <Nav currentPath={path} />
+
+  <main class="pt-14">
+
+    <!-- ── HERO ── -->
+    <section class="relative min-h-[calc(100vh-3.5rem)] flex items-center overflow-hidden">
+      <div class="absolute inset-0 bg-grid-pattern bg-grid opacity-100" aria-hidden="true"></div>
+      <div class="absolute inset-0 bg-hero-glow" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-bg" aria-hidden="true"></div>
+      <div class="absolute bottom-14 left-0 right-0 flex justify-center" aria-hidden="true">
+        <div class="animate-bounce text-muted opacity-70">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-8 py-8 w-full">
+        <div class="flex items-center justify-between mb-10">
+          <a
+            href="/projects"
+            class="inline-flex items-center gap-1.5 text-xs font-mono text-muted-2 hover:text-ink transition-colors duration-200 group"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-0.5 transition-transform">
+              <line x1="19" y1="12" x2="5" y2="12"/>
+              <polyline points="12 19 5 12 12 5"/>
+            </svg>
+            projects
+          </a>
+          <a
+            href="https://github.com/foxtrotjellyfish/the-cortex"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-medium px-5 py-2.5 rounded-lg transition-colors duration-200 text-sm"
+          >
+            Source on GitHub
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/>
+              <polyline points="7 7 17 7 17 17"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="space-y-5 max-w-3xl">
+          <div class="flex flex-wrap gap-2">
+            {['Elixir', 'OTP', 'GenServer', 'PubSub', 'Multi-Agent', 'Local LLM', 'SQLite', 'Phoenix LiveView'].map((t) => (
+              <span class="text-xs font-mono text-accent-light bg-accent/10 border border-accent/20 px-3 py-1 rounded-full">{t}</span>
+            ))}
+          </div>
+          <h1 class="font-display font-bold text-4xl sm:text-5xl text-ink leading-tight">
+            The Cortex
+          </h1>
+          <p class="text-lg text-muted leading-relaxed">
+            A multi-agent orchestration engine built on Elixir/OTP. Agents are OS-level processes — supervised, isolated, independently restartable. They debate questions through natural language, not JSON schemas, and reach consensus through structured disagreement. The BEAM handles routing, fan-out, fault tolerance, and coordination. The models just think.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-8 py-20">
+
+      <!-- What it does -->
+      <section class="mb-16">
+        <div class="mb-6">
+          <span class="font-mono text-xs text-accent-light tracking-widest uppercase">Overview</span>
+          <h2 class="font-display font-bold text-2xl text-ink mt-2">How it works</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            {
+              name: 'Orchestrate',
+              body: 'A Planner decomposes a question into sub-tasks. OTP\'s DynamicSupervisor fans them out to parallel Worker agents — each a GenServer with its own LLM adapter, viewpoint assignment, and failure boundary.',
+            },
+            {
+              name: 'Debate',
+              body: 'Workers are deliberately given different perspectives: argue for, argue against, check assumptions, play devil\'s advocate, evaluate completeness. They write tweet-sized natural language memos — compressed opinions, not verbose reports.',
+            },
+            {
+              name: 'Synthesize',
+              body: 'A Synthesizer reads all worker memos from a shared SQLite store and produces a final answer. The consensus emerges from structured disagreement, not averaging. Every step is traced and logged.',
+            },
+          ].map(({ name, body }) => (
+            <div class="p-5 rounded-xl bg-surface border border-border">
+              <p class="font-mono text-xs text-accent-light mb-3 uppercase tracking-widest">{name}</p>
+              <p class="text-sm text-muted leading-relaxed">{body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- The finding -->
+      <section class="mb-16">
+        <div class="mb-6">
+          <span class="font-mono text-xs text-accent-light tracking-widest uppercase">Initial findings</span>
+          <h2 class="font-display font-bold text-2xl text-ink mt-2">Collective intelligence from cheap models</h2>
+          <p class="text-muted mt-2 max-w-2xl text-sm leading-relaxed">
+            Early benchmark testing against known LLM failure modes — problems where sub-3B parameter models reliably produce wrong answers. The question: can structured multi-agent debate create correct reasoning that no individual small model generates?
+          </p>
+        </div>
+        <div class="space-y-4">
+          <div class="p-5 rounded-xl bg-surface border border-border">
+            <div class="flex items-start gap-4">
+              <div class="shrink-0 w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                <span class="text-accent-light text-lg font-bold">?</span>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-ink mb-1">Sally-Anne Test (Theory of Mind)</p>
+                <p class="text-xs text-muted-2 mb-3 font-mono">"Sally puts a marble in a basket and leaves. Anne moves it to a box. Where will Sally look?"</p>
+                <p class="text-sm text-muted leading-relaxed">
+                  Sub-3B models fail this consistently — they say "the box" because they can't model Sally's false belief. <strong class="text-ink">Solo models: 0 out of 9 correct.</strong> Viewpoint-diverse workers debating the same question produced correct theory-of-mind reasoning in <strong class="text-ink">2 out of 3 trials</strong> — signal that simply doesn't exist in any individual model at this scale.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 rounded-xl bg-surface border border-border">
+            <div class="flex items-start gap-4">
+              <div class="shrink-0 w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                <span class="text-accent-light text-lg font-bold">#</span>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-ink mb-1">Farmer's Sheep (Premise Challenge)</p>
+                <p class="text-xs text-muted-2 mb-3 font-mono">"A farmer has 15 sheep. All but 8 die. How many are left?"</p>
+                <p class="text-sm text-muted leading-relaxed">
+                  Small models compute 15 − 8 = 7 instead of recognizing "all but 8" means 8 remain. <strong class="text-ink">Solo models: near zero.</strong> Viewpoint-diverse workers identified the correct answer in <strong class="text-ink">3 out of 3 trials</strong>. The adversarial viewpoint ("check assumptions") consistently catches the premise trap.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 p-4 rounded-xl bg-accent/5 border border-accent/20">
+          <p class="text-sm text-muted leading-relaxed">
+            <strong class="text-accent-light">The pattern:</strong> Viewpoint-diverse workers reliably produce correct reasoning that no solo model generates at the same parameter scale. The synthesis step — extracting the right answer from worker debate — is the current bottleneck being investigated. Worker-level signal is the validated finding; end-to-end accuracy is the active research frontier.
+          </p>
+        </div>
+      </section>
+
+      <!-- Why OTP -->
+      <section class="mb-16">
+        <div class="mb-6">
+          <span class="font-mono text-xs text-accent-light tracking-widest uppercase">Why this stack</span>
+          <h2 class="font-display font-bold text-2xl text-ink mt-2">OTP was built for this</h2>
+          <p class="text-muted mt-2 max-w-2xl text-sm leading-relaxed">
+            Multi-agent AI orchestration is a distributed systems problem. The BEAM has been solving distributed systems problems since 1986. These aren't borrowed abstractions — they're native primitives.
+          </p>
+        </div>
+        <ul class="space-y-3">
+          {[
+            'Each agent is a GenServer — a long-lived process with its own mailbox, state, and failure boundary. If one crashes, OTP restarts it. The others never notice.',
+            'Fan-out to parallel workers uses DynamicSupervisor — the same mechanism that manages millions of concurrent connections in telecom switches.',
+            'Inter-agent communication uses Phoenix PubSub — fire-and-forget signals routed by topic. Agents don\'t know each other. They publish to topics and trust the bus.',
+            'LLM adapters are pluggable behaviours — switch between cloud APIs, local Ollama, llama-server over HTTP, or auto-fallback chains. The agent doesn\'t know or care which brain it\'s using.',
+            'Every micro-transaction is traced: system prompt, model, tokens, cost, duration, signals emitted. Observability from day one via :telemetry.',
+          ].map((item) => (
+            <li class="flex gap-3 text-sm text-muted">
+              <span class="text-accent-light shrink-0 mt-0.5">→</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Architecture sketch -->
+      <section class="mb-16">
+        <div class="mb-6">
+          <span class="font-mono text-xs text-accent-light tracking-widest uppercase">Architecture</span>
+          <h2 class="font-display font-bold text-2xl text-ink mt-2">The cognition tree</h2>
+        </div>
+        <div class="rounded-xl bg-surface border border-border p-6 font-mono text-xs text-muted leading-relaxed overflow-x-auto">
+          <pre class="whitespace-pre">{`Question
+    ↓
+┌─────────┐
+│ Planner │  Decomposes into sub-tasks (NL, not JSON)
+└────┬────┘
+     ↓  fan-out (DynamicSupervisor)
+┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐
+│ Argue   │ │ Argue   │ │ Check   │ │ Devil's │ │Evaluate │
+│  For    │ │Against  │ │Premises │ │Advocate │ │Complete.│
+└────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘
+     ↓           ↓           ↓           ↓           ↓
+     └───────────┴─────┬─────┴───────────┴───────────┘
+                       ↓  fan-in (SQLite memo store)
+                ┌──────────────┐
+                │ Synthesizer  │  Reads all memos, moderates consensus
+                └──────┬───────┘
+                       ↓
+                    Answer`}</pre>
+        </div>
+        <p class="text-xs text-muted-2 mt-3">
+          Each box is an OTP process. Workers run in parallel. The Synthesizer waits for all memos via PubSub before producing its answer. Full architecture details in the <a href="https://github.com/foxtrotjellyfish/the-cortex" target="_blank" rel="noopener noreferrer" class="text-accent-light hover:text-accent-bright transition-colors">repo README</a>.
+        </p>
+      </section>
+
+      <!-- Research validation -->
+      <section class="mb-16">
+        <div class="mb-6">
+          <span class="font-mono text-xs text-accent-light tracking-widest uppercase">Research context</span>
+          <h2 class="font-display font-bold text-2xl text-ink mt-2">Independent validation</h2>
+        </div>
+        <div class="rounded-xl bg-surface border border-border overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-border/60">
+                  <th class="text-left px-5 py-3 font-mono text-xs text-muted-2 uppercase tracking-widest">Finding</th>
+                  <th class="text-left px-4 py-3 font-mono text-xs text-muted-2 uppercase tracking-widest">Source</th>
+                  <th class="text-left px-4 py-3 font-mono text-xs text-muted-2 uppercase tracking-widest">Cortex connection</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  {
+                    finding: 'LLMs produce better outputs when reading other LLMs\' prose',
+                    source: 'Together AI — Mixture of Agents',
+                    connection: 'Why workers communicate in natural language, not structured schemas',
+                  },
+                  {
+                    finding: 'Heterogeneous model debate with confidence weighting outperforms GPT-4',
+                    source: 'ReConcile (ICLR 2025)',
+                    connection: 'Why workers get different viewpoints and models',
+                  },
+                  {
+                    finding: '5-7 small specialists beat a single large generalist',
+                    source: 'FOCUS (NeurIPS 2025)',
+                    connection: 'Why the cognition tree fans out to 5 parallel workers',
+                  },
+                  {
+                    finding: 'Coordination scaling may rival model scaling',
+                    source: 'SwarmSys (ICML 2025)',
+                    connection: 'The thesis: better orchestration, not just bigger models',
+                  },
+                ].map(({ finding, source, connection }) => (
+                  <tr class="border-b border-border/30 last:border-0">
+                    <td class="px-5 py-3 text-xs text-muted">{finding}</td>
+                    <td class="px-4 py-3 text-xs text-muted-2">{source}</td>
+                    <td class="px-4 py-3 text-xs text-accent-light">{connection}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Context -->
+      <section class="mb-16">
+        <div class="p-6 rounded-xl bg-surface border border-border/60">
+          <p class="font-mono text-xs text-muted-2 uppercase tracking-widest mb-3">Context</p>
+          <p class="text-sm text-muted leading-relaxed mb-3">
+            The Cortex is an open-source project under <a href="https://foxtrotjellyfish.github.io" target="_blank" rel="noopener noreferrer" class="text-accent-light hover:text-accent-bright transition-colors">Foxtrot Jellyfish</a>, alongside <a href="https://github.com/foxtrotjellyfish/the-substrate" target="_blank" rel="noopener noreferrer" class="text-accent-light hover:text-accent-bright transition-colors">The Substrate</a> — an open protocol framework for AI agent systems. MIT licensed.
+          </p>
+          <p class="text-sm text-muted leading-relaxed">
+            Testing uses publicly available benchmarks and open-weight models (Qwen 2.5, Llama 3.2, TinyDolphin). All architectural decisions trace back to published research or measured results.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-border/40 mt-8">
+      <div class="max-w-4xl mx-auto px-4 sm:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="font-mono text-xs text-muted-2">minneapolis, mn</span>
+        <div class="flex items-center gap-5">
+          <a href="https://github.com/jakedjohnson" target="_blank" rel="noopener noreferrer" class="text-muted-2 hover:text-ink transition-colors duration-200 text-xs font-mono">github</a>
+          <a href="https://www.linkedin.com/in/jacobdjohnson/" target="_blank" rel="noopener noreferrer" class="text-muted-2 hover:text-ink transition-colors duration-200 text-xs font-mono">linkedin</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+</Layout>

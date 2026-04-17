@@ -31,8 +31,9 @@ const softwareProjects = [
   },
   {
     name: 'The Cortex',
-    description: 'OTP-based agent orchestration engine. GenServers as agents, supervision trees as coordination, Oban as the job backbone.',
-    tags: ['Elixir', 'OTP', 'GenServer', 'Oban'],
+    description: 'Multi-agent orchestration engine on OTP. Viewpoint-diverse agents debate via natural language, supervised by OTP fault tolerance. Early benchmarks show collectively cheap models solving reasoning problems no individual small model can crack.',
+    tags: ['Elixir', 'OTP', 'GenServer', 'Multi-Agent', 'Local LLM'],
+    href: '/projects/the-cortex',
     github: 'https://github.com/foxtrotjellyfish/the-cortex',
     status: 'building' as const,
   },
@@ -57,9 +58,9 @@ const physicalProjects = [
   {
     name: 'NetBSD Agent Platform (Raspberry Pi 5)',
     year: '2026',
-    description: 'Elixir/OTP and a local LLM running on a Raspberry Pi 5 under NetBSD. Air-gapped agent orchestration supervised by OTP, inference via llama.cpp — no cloud, no network, no safety net. Submitted as a talk to ElixirConf US 2026.',
-    tags: ['NetBSD', 'Raspberry Pi', 'Elixir', 'OTP', 'Local LLM'],
-    status: 'noodling' as const,
+    description: 'Raspberry Pi 5 in an Argon ONE V5 case running NetBSD — BEAM/OTP agents orchestrating local LLM inference via llama.cpp. Hardware assembled, NetBSD booted, SSH working. Porting Elixir, llama.cpp, and the full Cortex cognition tree to run air-gapped on a $80 board. Submitted as a talk to ElixirConf US 2026.',
+    tags: ['NetBSD', 'Raspberry Pi', 'Elixir', 'OTP', 'Local LLM', 'llama.cpp'],
+    status: 'prototyping' as const,
   },
   {
     name: 'House Foundation Leveling',
